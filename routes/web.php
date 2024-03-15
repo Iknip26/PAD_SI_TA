@@ -19,17 +19,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/rss', 'RssController@index');
+
 // SESSION
 
 // PUBLIC
 Route::middleware(['guest'])->group(function (){
     Route::get('/index', [SessionController::class, 'index'])->name('login');
     Route::post('/login', [SessionController::class, 'login'])->name('authenticate');
-
-    Route::get('/homescreen', [publicPageController::class, 'homescreen'])->name('public.homescreen');
+    Route::get('/dashboard', [publicPageController::class, 'dashboard'])->name('public.dashboard');
     Route::get('/showcase', [publicPageController::class, 'showcase'])->name('public.showcase');
     Route::get('/portofolio', [publicPageController::class, 'portofolio'])->name('public.portofolio');
     Route::get('/team', [publicPageController::class, 'team'])->name('public.team');
+    Route::get('/TA/{id}', [publicPageController::class, 'TA'])->name('public.TA');
+    Route::get('/lecturer/{id}', [publicPageController::class, 'lecturer'])->name('public.lecturer');
+
 });
 
 Route::get('/home', function(){
